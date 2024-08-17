@@ -1,0 +1,665 @@
+[
+    {
+        "id": "d76ff49778e639e2",
+        "type": "tab",
+        "label": "ACCESO",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "f4b0e4c3723b1010",
+        "type": "function",
+        "z": "d76ff49778e639e2",
+        "name": "Registro",
+        "func": "global.set (\"Nombre\",msg.payload);\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "0ff0ef2c1884ac6e",
+        "type": "function",
+        "z": "d76ff49778e639e2",
+        "name": "Proceso de Registro",
+        "func": "msg.payload = \"\"+global.get(\"Nombre\");\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 360,
+        "wires": [
+            [
+                "3f9cbca93ff3347b",
+                "2bf0c9f0e7b5958f"
+            ]
+        ]
+    },
+    {
+        "id": "3f9cbca93ff3347b",
+        "type": "exec",
+        "z": "d76ff49778e639e2",
+        "command": "python3 /home/jaqueline/ACCESO/REGISTRO.py",
+        "addpay": "payload",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "",
+        "x": 730,
+        "y": 360,
+        "wires": [
+            [
+                "604d46bcf4199b33"
+            ],
+            [
+                "604d46bcf4199b33"
+            ],
+            [
+                "604d46bcf4199b33"
+            ]
+        ]
+    },
+    {
+        "id": "604d46bcf4199b33",
+        "type": "debug",
+        "z": "d76ff49778e639e2",
+        "name": "debug 13",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1160,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "2bf0c9f0e7b5958f",
+        "type": "debug",
+        "z": "d76ff49778e639e2",
+        "name": "debug 14",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 640,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "9670fba41486b6c5",
+        "type": "exec",
+        "z": "d76ff49778e639e2",
+        "command": "python3 /home/jaqueline/ACCESO/ENTRADA.py",
+        "addpay": "payload",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "",
+        "x": 510,
+        "y": 680,
+        "wires": [
+            [],
+            [
+                "731ecfb424f8b284"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "731ecfb424f8b284",
+        "type": "debug",
+        "z": "d76ff49778e639e2",
+        "name": "debug 15",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 940,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "7439a9cdb31bffed",
+        "type": "function",
+        "z": "d76ff49778e639e2",
+        "name": "Query",
+        "func": "msg.topic = \"INSERT INTO ACCESO (NOMBRE,No_IDENTIFICACION,ESTATUS) VALUES ('\" + msg.payload.nom + \"','\" + msg.payload.id + \"','\" + msg.payload.stu + \"');\";\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 530,
+        "y": 1160,
+        "wires": [
+            [
+                "f52d455f14a58b6d"
+            ]
+        ]
+    },
+    {
+        "id": "69aaff9f602070e9",
+        "type": "exec",
+        "z": "d76ff49778e639e2",
+        "command": "python3 /home/jaqueline/ACCESO/SALIDA.py",
+        "addpay": "payload",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "",
+        "x": 480,
+        "y": 800,
+        "wires": [
+            [],
+            [
+                "23e25516de27ce1c"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "23e25516de27ce1c",
+        "type": "debug",
+        "z": "d76ff49778e639e2",
+        "name": "debug 16",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 880,
+        "y": 800,
+        "wires": []
+    },
+    {
+        "id": "e5c6d06bc8bfc1c2",
+        "type": "json",
+        "z": "d76ff49778e639e2",
+        "name": "",
+        "property": "payload",
+        "action": "obj",
+        "pretty": false,
+        "x": 350,
+        "y": 900,
+        "wires": [
+            [
+                "7cc058f757d517e2",
+                "61ca4b04ce2e7c8a",
+                "613a392a5ec63331",
+                "7439a9cdb31bffed"
+            ]
+        ]
+    },
+    {
+        "id": "7cc058f757d517e2",
+        "type": "function",
+        "z": "d76ff49778e639e2",
+        "name": "Nombre",
+        "func": "msg.payload = msg.payload.nom;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 540,
+        "y": 880,
+        "wires": [
+            [
+                "c191a9ee47495565",
+                "f72b411ff5bcce13"
+            ]
+        ]
+    },
+    {
+        "id": "61ca4b04ce2e7c8a",
+        "type": "function",
+        "z": "d76ff49778e639e2",
+        "name": "No. Identificacion",
+        "func": "msg.payload = msg.payload.id;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 570,
+        "y": 920,
+        "wires": [
+            [
+                "a260a4f1e056b947"
+            ]
+        ]
+    },
+    {
+        "id": "613a392a5ec63331",
+        "type": "function",
+        "z": "d76ff49778e639e2",
+        "name": "Estado",
+        "func": "msg.payload = msg.payload.stu;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 540,
+        "y": 960,
+        "wires": [
+            [
+                "68162acea3d77618"
+            ]
+        ]
+    },
+    {
+        "id": "5f4ea9ac944f783f",
+        "type": "debug",
+        "z": "d76ff49778e639e2",
+        "name": "debug 17",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 940,
+        "y": 1160,
+        "wires": []
+    },
+    {
+        "id": "f72b411ff5bcce13",
+        "type": "debug",
+        "z": "d76ff49778e639e2",
+        "name": "debug 18",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 720,
+        "y": 1040,
+        "wires": []
+    },
+    {
+        "id": "bc2cc02bd982befd",
+        "type": "ui_button",
+        "z": "d76ff49778e639e2",
+        "name": "",
+        "group": "df76cb52c6cf8f17",
+        "order": 8,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "REGISTRAR",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 130,
+        "y": 360,
+        "wires": [
+            [
+                "0ff0ef2c1884ac6e"
+            ]
+        ]
+    },
+    {
+        "id": "fdd7783c789da398",
+        "type": "ui_button",
+        "z": "d76ff49778e639e2",
+        "name": "",
+        "group": "df76cb52c6cf8f17",
+        "order": 9,
+        "width": 3,
+        "height": 1,
+        "passthru": false,
+        "label": "ENTRADA",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 150,
+        "y": 680,
+        "wires": [
+            [
+                "9670fba41486b6c5",
+                "a055a8c6549915b2"
+            ]
+        ]
+    },
+    {
+        "id": "adfaa0537f065a9f",
+        "type": "ui_button",
+        "z": "d76ff49778e639e2",
+        "name": "",
+        "group": "df76cb52c6cf8f17",
+        "order": 10,
+        "width": 3,
+        "height": 1,
+        "passthru": false,
+        "label": "SALIDA",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 140,
+        "y": 800,
+        "wires": [
+            [
+                "69aaff9f602070e9",
+                "a055a8c6549915b2"
+            ]
+        ]
+    },
+    {
+        "id": "7d7177ba9b1a877c",
+        "type": "ui_text_input",
+        "z": "d76ff49778e639e2",
+        "name": "",
+        "label": "NOMBRE",
+        "tooltip": "",
+        "group": "df76cb52c6cf8f17",
+        "order": 7,
+        "width": 6,
+        "height": 2,
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 120,
+        "y": 240,
+        "wires": [
+            [
+                "f4b0e4c3723b1010"
+            ]
+        ]
+    },
+    {
+        "id": "c191a9ee47495565",
+        "type": "ui_text",
+        "z": "d76ff49778e639e2",
+        "group": "df76cb52c6cf8f17",
+        "order": 1,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "RESPONSABLE:",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 790,
+        "y": 880,
+        "wires": []
+    },
+    {
+        "id": "a260a4f1e056b947",
+        "type": "ui_text",
+        "z": "d76ff49778e639e2",
+        "group": "df76cb52c6cf8f17",
+        "order": 2,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "NO.IDENTIFICACIÓN:",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 800,
+        "y": 920,
+        "wires": []
+    },
+    {
+        "id": "68162acea3d77618",
+        "type": "ui_text",
+        "z": "d76ff49778e639e2",
+        "group": "df76cb52c6cf8f17",
+        "order": 3,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "ESTATUS:",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 770,
+        "y": 960,
+        "wires": []
+    },
+    {
+        "id": "f144e407e790825e",
+        "type": "ui_template",
+        "z": "d76ff49778e639e2",
+        "group": "df76cb52c6cf8f17",
+        "name": "",
+        "order": 5,
+        "width": 6,
+        "height": 4,
+        "format": "<iframe id=\"Video\" title=\"Video\" width=\"300\" height=\"200\" \n    src=\"http://192.168.1.78:81/stream\">\n</iframe>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 200,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f52d455f14a58b6d",
+        "type": "mysql",
+        "z": "d76ff49778e639e2",
+        "mydb": "2e364785f59a8e6c",
+        "name": "Base de Datos",
+        "x": 740,
+        "y": 1160,
+        "wires": [
+            [
+                "5f4ea9ac944f783f"
+            ]
+        ]
+    },
+    {
+        "id": "3a1b23acbc9e5b4b",
+        "type": "mqtt in",
+        "z": "d76ff49778e639e2",
+        "name": "",
+        "topic": "Banco/Acceso",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "849c6bd0f7db51e2",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 170,
+        "y": 900,
+        "wires": [
+            [
+                "e5c6d06bc8bfc1c2"
+            ]
+        ]
+    },
+    {
+        "id": "a055a8c6549915b2",
+        "type": "exec",
+        "z": "d76ff49778e639e2",
+        "command": "python3 /home/jaqueline/ACCESO/rfid_read.py",
+        "addpay": "payload",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "",
+        "x": 500,
+        "y": 740,
+        "wires": [
+            [],
+            [
+                "535b30aa672f7f60"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "535b30aa672f7f60",
+        "type": "debug",
+        "z": "d76ff49778e639e2",
+        "name": "debug 19",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 780,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "4d1429db9bea71bd",
+        "type": "ui_spacer",
+        "z": "d76ff49778e639e2",
+        "name": "spacer",
+        "group": "df76cb52c6cf8f17",
+        "order": 4,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "5a34332f6d3e926a",
+        "type": "ui_spacer",
+        "z": "d76ff49778e639e2",
+        "name": "spacer",
+        "group": "df76cb52c6cf8f17",
+        "order": 6,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "df76cb52c6cf8f17",
+        "type": "ui_group",
+        "name": "IDENTIDAD",
+        "tab": "bdcaa08dc97cec90",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "2e364785f59a8e6c",
+        "type": "MySQLdatabase",
+        "name": "",
+        "host": "localhost",
+        "port": "3306",
+        "db": "BANCO",
+        "tz": "-06:00",
+        "charset": "UTF8"
+    },
+    {
+        "id": "849c6bd0f7db51e2",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "35.157.194.143",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "bdcaa08dc97cec90",
+        "type": "ui_tab",
+        "name": "ACCESO",
+        "icon": "dashboard",
+        "order": 6,
+        "disabled": false,
+        "hidden": false
+    }
+]
